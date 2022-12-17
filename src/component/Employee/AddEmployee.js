@@ -3,11 +3,35 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-const AddEmployee =()=> {
+const AddEmployee =({addEmployee})=> {
   const [show, setShow] = useState(false);
+
+  const [inputValue,setInputValue] = useState({
+    name:"",
+    email:"",
+    address:"",
+    education:""
+  })
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleChange = (evt) => {
+
+            var name=evt.target.name;
+            var value=evt.target.value;
+            setInputValue((currentInputValue) =>{
+                return {
+                    ...currentInputValue,
+                    [name]:value
+                }
+            })
+
+  }
+  const handleSave = () => {
+        addEmployee(inputValue) 
+        setShow(false);
+  }
 
   return (
     <>
@@ -24,28 +48,36 @@ const AddEmployee =()=> {
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Name</Form.Label>
               <Form.Control
+                name="name"
                 type="text"
+                onChange={handleChange.bind()}
                 autoFocus
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Email</Form.Label>
               <Form.Control
-                type="email"                
+                type="email" 
+                name="email"
+                   onChange={handleChange.bind()}
                 autoFocus
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Address</Form.Label>
               <Form.Control
+                name="address"
                 type="text"
+                   onChange={handleChange.bind()}
                 autoFocus
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Eduncation</Form.Label>
               <Form.Control
+                name="education"
                 type="text"
+                   onChange={handleChange.bind()}
                 autoFocus
               />
             </Form.Group>
@@ -62,7 +94,7 @@ const AddEmployee =()=> {
           <Button variant="danger" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleSave}>
             Save
           </Button>
         </Modal.Footer>
