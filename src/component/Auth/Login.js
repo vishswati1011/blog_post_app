@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signIn } from "../firebase";
-
+import { signIn } from "../../firebase";
+import './Login.css'
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -21,7 +21,8 @@ const Login = () => {
         }
     };
     return (
-        <>
+        // style={{backgroundColor:"#147CE3"}}
+        <div className="loginback">
            <div className="col-md-3 col-sm-3 col-xs-3 m-auto text-center text-warning mb-5">
                 <b style={{fontSize:"24px"}} >Login</b>
             </div> 
@@ -58,7 +59,7 @@ const Login = () => {
                 </div>
                 </form>
             </div>
-        </>
+        </div>
     );
 };
 

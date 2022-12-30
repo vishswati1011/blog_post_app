@@ -1,0 +1,11 @@
+.projectform{
+
+    background-color: rgb(51, 131, 243);
+    border-radius: 10px;
+    margin-top: 15px;
+    color: #eee;
+
+}
+.inner_project_from{
+    padding: 5px;
+}

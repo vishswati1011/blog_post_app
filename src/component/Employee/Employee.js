@@ -1,6 +1,6 @@
 import React, { useContext, useEffect ,useState} from "react";
-import AddEmployee from '../component/Employee/AddEmployee'
-import { EmployeeContext } from "../store/context/employee.context";
+import AddEmployee from './AddEmployee'
+import { EmployeeContext } from "../../store/context/employee.context";
 const EmployeeTable = () => {
 
   const empCtx=useContext(EmployeeContext);
@@ -22,7 +22,7 @@ const EmployeeTable = () => {
   return (
     <>
 
-      <div>
+      <div className="mt-3">
         <AddEmployee addEmployee={addEmployee} />
       </div>
       <div className="container">
