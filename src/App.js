@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import Navbar from "./Pages/Navbar";
+import Navbar from "./Pages/Navbar/Navbar";
 import EmployeeContextProvider from "./store/context/employee.context";
 import AuthRoute from "./Routes/AuthRoute";
 import UnAuthRoute from './Routes/UnAuthRouts';

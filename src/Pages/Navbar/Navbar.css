@@ -1,0 +1,21 @@
+.logo_css{
+    width: 80px;
+}
+.navbar_css{
+    background-color: rgb(18, 4, 84);
+}
+.mid_nav{
+    margin-left: 150px;
+} 
+.nav-item{
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.nav-link{
+    color:beige;
+}
+
+.icon_color{
+    color: beige;
+    margin-left: 15px;
+}
