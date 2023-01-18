@@ -10,6 +10,8 @@ import Profile from "../component/Profile/Profile";
 import AddBlog from "../component/Blog/AddBlog";
 import Dashboard from "../component/Dashboard/Dashboard";
 import AddProject from '../component/Project/AddProject'
+import Map from '../component/Map/Map3'
+
 function AuthRoute () {
     const drawer=useContext(DrawerContext);
     return (
@@ -22,6 +24,8 @@ function AuthRoute () {
                     <Route path="/employee" element={<Employee />}/>
                     <Route path="/project" element={<Project />}/>
                     <Route path="/addProject" element={<AddProject />}/>
+                    <Route path="/map" element={<Map />}/>
+
 
                     <Route path="/blog" element={<Blog />}/>
                     <Route path="/addblog" element={<AddBlog />}/>

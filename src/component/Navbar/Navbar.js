@@ -28,7 +28,10 @@ function Navbar() {
                             <a className="nav-link" href="/blog">Blog</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/#">Contact</a>
+                            <a className="nav-link" href="/#">Contaasdfnadsct</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/#">Map</a>
                         </li>
                     </ul>
                     <form className="d-flex">

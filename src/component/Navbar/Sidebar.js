@@ -31,8 +31,11 @@ function SidebarComponent() {
             <div className="closemenu" onClick={()=>openDrawer()}>
             </div>
             <Menu iconShape="square">
-              <MenuItem   routerLink={<Link to="/home" />} icon={<FiHome />}>
-                Dashboard
+              <MenuItem   routerLink={<Link to="/map" />} icon={<FiHome />}>
+                Dashboard1
+              </MenuItem>
+              <MenuItem   routerLink={<Link to="/map" />} icon={<FiHome />}>
+                Map
               </MenuItem>
               <MenuItem routerLink={<Link to="/profile" />} icon={<BsPersonFill />}>Profile</MenuItem>
               <MenuItem routerLink={<Link to="/employee" />} icon={<MdGroups />}>Employee</MenuItem>
