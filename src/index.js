@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ProSidebarProvider } from 'react-pro-sidebar';
-import Map3 from './component/Map/Map';
+import Map3 from './component/Map/Map7';
 // import swDev from './swDev';
 
 const Root = () => (

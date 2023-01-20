@@ -1,11 +1,14 @@
 import _  from "lodash";
 import { compose, withProps, lifecycle } from "recompose";
 import {
+  GoogleMap,
+  Polygon,
   withScriptjs,
   withGoogleMap,
-GoogleMap, Polygon,
-  Marker,
+  TrafficLayer,
 } from "react-google-maps";
+import MarkerWithLabel from 'react-google-maps/lib/components/addons/MarkerWithLabel';
+
 import {
 LoadScript
 } from "@react-google-maps/api";
@@ -13,7 +16,16 @@ import { useState,useRef,useCallback } from "react";
 import { SearchBox } from "react-google-maps/lib/components/places/SearchBox";
 import  { StandaloneSearchBox } from "react-google-maps/lib/components/places/StandaloneSearchBox";
 
-
+const parseCoordinates = (coordinates) => {
+  var result = [];
+  for (var index = 0; index < coordinates.length - 1; index++) {
+      result.push({
+          lat: Number(coordinates[index].lat),
+          lng: Number(coordinates[index].lng),
+      });
+  }
+  return result;
+};
 
 
 const Map1 = () =>{
@@ -67,8 +79,7 @@ const Map1 = () =>{
 
     const MapWithASearchBox = compose(
       withProps({
-        // googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",
-        googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyDGDYnqIJRFIKhCgLgPZPMFxAkpQNAGa9M&v=3.exp&libraries=geometry,drawing,places",
+        googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}.&v=3.exp&libraries=geometry,drawing,places`,  
         loadingElement: <div style={{ height: `100%` }} />,
         containerElement: <div style={{ height: `400px` }} />,
         mapElement: <div style={{ height: `100%` }} />,
@@ -123,60 +134,147 @@ const Map1 = () =>{
       withScriptjs,
       withGoogleMap
     )(props =>
-
-      <LoadScript
-      id="script-loader"
-      googleMapsApiKey="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGDYnqIJRFIKhCgLgPZPMFxAkpQNAGa9M&v=3.exp&libraries=geometry,drawing,places"
-      language="en"
-      region="us"
-    >
-      <GoogleMap
-        ref={props.onMapMounted}
-        defaultZoom={15}
-        center={props.center}
-        onBoundsChanged={props.onBoundsChanged}
-      >
-         <Polygon
-                // Make the Polygon editable / draggable
-                editable
-                draggable
-                path={path}
-                // Event used when manipulating and adding points
-                onMouseUp={onEdit}
-                // Event used when dragging the whole Polygon
-                onDragEnd={onEdit}
-                onLoad={onLoad}
-                onUnmount={onUnmount}
-              />
-        <StandaloneSearchBox
-          ref={props.onSearchBoxMounted}
-          bounds={props.bounds}
-          controlPosition={window.google.maps.ControlPosition.TOP_LEFT}
-          onPlacesChanged={props.onPlacesChanged}
-        >
-          <input
-            type="text"
-            placeholder="Customized your placeholder"
-            style={{
-              boxSizing: `border-box`,
-              border: `1px solid transparent`,
-              width: `450px`,
-              height: `32px`,
-              marginTop: `27px`,
-              padding: `0 12px`,
-              borderRadius: `3px`,
-              boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-              fontSize: `14px`,
-              outline: `none`,
-              textOverflow: `ellipses`,
+<GoogleMap
+            mapTypeId={props.mapType}
+            defaultCenter={{
+                lat: props.defaultCentre ? Number(props.defaultCentre.lat) :22.642200150530257,
+                lng: props.defaultCentre ? Number(props.defaultCentre.lng) : 75.61468382183699,
             }}
-          />
-        </StandaloneSearchBox>
-        {props.markers.map((marker, index) =>
-          <Marker key={index} position={marker.position} />
-        )}
-      </GoogleMap>
-   </LoadScript>
+            //note different spellings of centre and center.
+            {...props.center && { center: props.center }}
+            defaultZoom={5}
+            zoomControl={false}
+            tilt={props.tilt}
+        >
+   { console.warn("warn=====",props)}
+
+            {props.isMarkerShown && (
+                props.polygons &&
+                props.polygons.map((poly, i) => {
+                    const onClick = props.onClick.bind(this, poly);
+                    return (
+                        <MarkerWithLabel
+                            position={{
+                                lat: poly.suburbCentre.lat,
+                                lng: poly.suburbCentre.lng,
+                            }}
+                            onClick={onClick}
+                            labelAnchor={new window.google.maps.Point(0, 0)}
+                            labelStyle={{
+                                backgroundColor: "white",
+                                fontSize: "12px",
+                                padding: "8px",
+                                borderRadius: "5px"
+                            }}
+                        >
+                            <div>{poly.metaData.name}</div>
+                        </MarkerWithLabel>
+
+                    );
+                }
+                ))
+            }
+
+            {props.individualGeoCode &&
+                <MarkerWithLabel
+                    position={{
+                        lat: props.individualGeoCode.lat,
+                        lng: props.individualGeoCode.lng,
+                    }}
+                    labelAnchor={new window.google.maps.Point(0, 0)}
+                    labelStyle={{
+                        backgroundColor: "white",
+                        fontSize: "12px",
+                        padding: "8px",
+                        borderRadius: "5px"
+                    }}
+                >
+                    <div>{props.markerTag}</div>
+                </MarkerWithLabel>
+            }
+
+            {props.showTrafficLayer && <TrafficLayer autoUpdate />}
+
+            {(props.isSuburbHighlighted && props.polygons) && (
+                props.polygons.map((poly, i) => {
+                    const onClick = props.onClick.bind(this, poly)
+
+                    return (
+                        <Polygon
+                            path={parseCoordinates(poly.boundaries)}
+                            key={i}
+                            options={{
+                                fillColor: "yellow",
+                                fillOpacity: 0.4,
+                                strokeColor: "#d35400",
+                                strokeOpacity: 0.8,
+                                strokeWeight: 3
+                            }}
+                            onClick={() => { onClick(poly); }}
+                        />
+                    );
+                })
+            )}
+
+        </GoogleMap>
+
+   
+ 
+  //     <LoadScript
+  //     id="script-loader"
+  //     googleMapsApiKey="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGDYnqIJRFIKhCgLgPZPMFxAkpQNAGa9M&v=3.exp&libraries=geometry,drawing,places"
+  //     // googleMapsApiKey="AIzaSyDGDYnqIJRFIKhCgLgPZPMFxAkpQNAGa9M"
+     
+  //     language="en"
+  //     region="us"
+  //   >
+  //     <GoogleMap
+  //       ref={props.onMapMounted}
+  //       defaultZoom={15}
+  //       center={props.center}
+  //       onBoundsChanged={props.onBoundsChanged}
+  //     >
+  //        <Polygon
+  //               // Make the Polygon editable / draggable
+  //               editable
+  //               draggable
+  //               path={path}
+  //               // Event used when manipulating and adding points
+  //               onMouseUp={onEdit}
+  //               // Event used when dragging the whole Polygon
+  //               onDragEnd={onEdit}
+  //               onLoad={onLoad}
+  //               onUnmount={onUnmount}
+  //             />
+  //       <StandaloneSearchBox
+  //         ref={props.onSearchBoxMounted}
+  //         bounds={props.bounds}
+  //         controlPosition={window.google.maps.ControlPosition.TOP_LEFT}
+  //         onPlacesChanged={props.onPlacesChanged}
+  //       >
+  //         <input
+  //           type="text"
+  //           placeholder="Customized your placeholder"
+  //           style={{
+  //             boxSizing: `border-box`,
+  //             border: `1px solid transparent`,
+  //             width: `450px`,
+  //             height: `32px`,
+  //             marginTop: `27px`,
+  //             padding: `0 12px`,
+  //             borderRadius: `3px`,
+  //             boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
+  //             fontSize: `14px`,
+  //             outline: `none`,
+  //             textOverflow: `ellipses`,
+  //           }}
+  //         />
+  //       </StandaloneSearchBox>
+  //       {props.markers.map((marker, index) =>
+  //         <Marker key={index} position={marker.position} />
+  //       )}
+  //     </GoogleMap>
+  //  </LoadScript>
     );
     
     <MapWithASearchBox />
