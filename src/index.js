@@ -4,12 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ProSidebarProvider } from 'react-pro-sidebar';
-import Map3 from './component/Map/Map7';
-// import swDev from './swDev';
+
 
 const Root = () => (
-  //  <App />
-  <Map3/>
+  <React.StrictMode>
+  <ProSidebarProvider>
+  <App />
+</ProSidebarProvider>;
+  </React.StrictMode>
  );
 ReactDOM.render(<Root />, document.getElementById("root"));
 

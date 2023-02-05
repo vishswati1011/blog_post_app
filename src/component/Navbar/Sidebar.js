@@ -31,18 +31,31 @@ function SidebarComponent() {
             <div className="closemenu" onClick={()=>openDrawer()}>
             </div>
             <Menu iconShape="square">
-              <MenuItem   routerLink={<Link to="/map" />} icon={<FiHome />}>
+            <Link to="/dashboard" >
+              <MenuItem    icon={<FiHome />}>
                 Dashboard1
               </MenuItem>
-              <MenuItem   routerLink={<Link to="/map" />} icon={<FiHome />}>
+              </Link>
+              <Link to="/map" >
+              <MenuItem  icon={<FiHome />}>
                 Map
               </MenuItem>
-              <MenuItem routerLink={<Link to="/profile" />} icon={<BsPersonFill />}>Profile</MenuItem>
-              <MenuItem routerLink={<Link to="/employee" />} icon={<MdGroups />}>Employee</MenuItem>
-              <MenuItem routerLink={<Link to="/project" />} icon={<RiPencilLine />}>Project</MenuItem>
-              <MenuItem routerLink={<Link to="/addBlog" />} icon={<AiOutlineAppstoreAdd/>}>AddBlog</MenuItem>
-
-              <MenuItem routerLink={<Link to="/blog" />} icon={<FaBlog />}>Blog</MenuItem>
+              </Link>
+              <Link to="/profile">
+              <MenuItem  icon={<BsPersonFill />}>Profile</MenuItem>
+              </Link>
+              <Link to="/employee">
+              <MenuItem  icon={<MdGroups />}>Employee</MenuItem>
+              </Link>
+              <Link to="/project">
+              <MenuItem icon={<RiPencilLine />}>Project</MenuItem>
+              </Link>
+              <Link to="/addBlog">
+              <MenuItem  icon={<AiOutlineAppstoreAdd/>}>AddBlog</MenuItem>
+              </Link>
+              <Link to="/blog">
+              <MenuItem  icon={<FaBlog />}>Blog</MenuItem>
+              </Link>
             </Menu>
         </Sidebar>
     )

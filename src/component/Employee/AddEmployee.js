@@ -13,6 +13,12 @@ const AddEmployee =({addEmployee})=> {
     education:""
   })
 
+  const [errorValue,setErrorValue] = useState({
+    name:"",
+    email:"",
+    address:"",
+    education:""
+  })
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -29,8 +35,34 @@ const AddEmployee =({addEmployee})=> {
 
   }
   const handleSave = () => {
+
+        let errors = {
+            ...errorValue
+        }
+        if(inputValue.name.length<=3){
+          errors.name="name should be 5 charecter"
+          errors.flag=true
+        }
+        if(inputValue.email===''){
+          errors.email="email reuired"
+          errors.flag=true
+        }
+        if(inputValue.address===''){
+          errors.address='address required'
+          errors.flag=true
+        }
+        if(inputValue.education===''){
+          errors.education='education required'
+          errors.flag=true
+        }
+        console.log(errors,"errors")
+        if(errors.flag===true)
+        {
+          setErrorValue(errors)
+        }else{
         addEmployee(inputValue) 
         setShow(false);
+        }
   }
 
   return (
@@ -52,6 +84,7 @@ const AddEmployee =({addEmployee})=> {
                 type="text"
                 onChange={handleChange.bind()}
                 autoFocus
+                isInvalid={errorValue.name!=''?true: false}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -59,8 +92,8 @@ const AddEmployee =({addEmployee})=> {
               <Form.Control
                 type="email" 
                 name="email"
-                   onChange={handleChange.bind()}
-                autoFocus
+                onChange={handleChange.bind()}
+                isInvalid={errorValue.email!=''?true: false}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -68,8 +101,9 @@ const AddEmployee =({addEmployee})=> {
               <Form.Control
                 name="address"
                 type="text"
-                   onChange={handleChange.bind()}
-                autoFocus
+                onChange={handleChange.bind()}
+                required
+                isInvalid={errorValue.address!=''?true: false}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -77,8 +111,8 @@ const AddEmployee =({addEmployee})=> {
               <Form.Control
                 name="education"
                 type="text"
-                   onChange={handleChange.bind()}
-                autoFocus
+                onChange={handleChange.bind()}
+                isInvalid={errorValue.education!=''?true: false}
               />
             </Form.Group>
             {/* <Form.Group
