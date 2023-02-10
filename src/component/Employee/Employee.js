@@ -1,9 +1,12 @@
-import React, { useContext, useEffect ,useState} from "react";
+import React, { useContext, useEffect ,useState,useRef} from "react";
 import AddEmployee from './AddEmployee'
+import ImportUserCSV from './ImportUserCSV'
 import { EmployeeContext } from "../../store/context/employee.context";
 const EmployeeTable = () => {
 
   const empCtx=useContext(EmployeeContext);
+  // const hiddenFileInput = React.useRef(null);
+
   const [allEmployee,setAllEmployee]=useState();
   const addEmployee = (data) =>{
     console.log("call context",empCtx)
@@ -18,12 +21,23 @@ const EmployeeTable = () => {
   console.log("allemployee",empCtx.employee,allEmployee)
 
      
- 
+  const handleImport = (inputValue) =>{
+    console.log("handleImport",inputValue)
+    addEmployee(inputValue) 
+    // hiddenFileInput.current.click();
+  }
+
   return (
     <>
 
-      <div className="mt-3">
+      <div className="row ">
+      <div className="col-lg-2">
         <AddEmployee addEmployee={addEmployee} />
+        </div>
+        <div className="col-lg-2">
+        <ImportUserCSV handleImport={handleImport} />
+        {/* <input type="file" style={{ display: 'none' }} ref={hiddenFileInput} /> */}
+        </div>
       </div>
       <div className="container">
         <div className="row">
