@@ -1,11 +1,10 @@
 import dashboardStyle from "./DashboardStyle";
 import {  Route, Routes } from "react-router-dom";
 import Employee from "../Employee/Employee";
-import Project from "../Project/Project";
+import Project from "../DataGridUI/ProjectTable";
 import Blog from "../Blog/Blog";
 import Profile from "../Profile/Profile";
 import AddBlog from "../Blog/AddBlog";
-// import Dashboard from "../Dashboard";
 import AddProject from '../Project/AddProject'
 import Map from '../Map/Map3'
 const MainContent = () => {
@@ -13,10 +12,7 @@ const MainContent = () => {
   return (
     <main className={classes.content}>
       <div className={classes.toolbar} />
-      {/* <Paper>
-        <Box p={3}> */}
         <Routes>
-                    {/* <Route path="/home" element={<Dashboard />} /> */}
                     <Route path="/employee" element={<Employee />}/>
                     <Route path="/project" element={<Project />}/>
                     <Route path="/addProject" element={<AddProject />}/>
@@ -25,8 +21,6 @@ const MainContent = () => {
                     <Route path="/addblog" element={<AddBlog />}/>
                     <Route path="/profile" element={<Profile />}/>
               </Routes>
-        {/* </Box>
-      </Paper> */}
     </main>
   );
 };

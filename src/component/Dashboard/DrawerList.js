@@ -10,24 +10,13 @@ import {
 import {Link, NavLink} from "react-router-dom";
 import dashboardStyle from "./DashboardStyle";
 const navList = [
-    { id: 1, linkName: "Dashboard", icon: <Dashboard /> ,path:'dashboard'},
-    { id: 2, linkName: "Profile", icon: <SupervisedUserCircle />, path:'profile'},
-    { id: 3, linkName: "Employee", icon: <VerifiedUser />, path:'Employee' },
+    { id: 1, linkName: "Dashboard", icon: <Dashboard /> ,path:'/dashboard'},
+    { id: 2, linkName: "Profile", icon: <SupervisedUserCircle />, path:'/profile'},
+    { id: 3, linkName: "Employee", icon: <VerifiedUser />, path:'/Employee' },
     { id: 4, linkName: "Map", icon: <StarHalf />, path:'map' },
     { id: 5, linkName: "blog", icon: <VerticalSplit />, path:'blog' },
-    { id: 6, linkName: "Project", icon: <HouseTwoTone /> , path:'project'},
-    { id: 1, linkName: "Dashboard", icon: <Dashboard /> ,path:'dashboard'},
-    { id: 2, linkName: "Profile", icon: <SupervisedUserCircle />, path:'profile'},
-    { id: 3, linkName: "Employee", icon: <VerifiedUser />, path:'Employee' },
-    { id: 4, linkName: "Map", icon: <StarHalf />, path:'map' },
-    { id: 5, linkName: "blog", icon: <VerticalSplit />, path:'Blog' },
-    { id: 6, linkName: "Project", icon: <HouseTwoTone /> , path:'project'},
-    { id: 1, linkName: "Dashboard", icon: <Dashboard /> ,path:'dashboard'},
-    { id: 2, linkName: "Profile", icon: <SupervisedUserCircle />, path:'profile'},
-    { id: 3, linkName: "Employee", icon: <VerifiedUser />, path:'Employee' },
-    { id: 4, linkName: "Map", icon: <StarHalf />, path:'map' },
-    { id: 5, linkName: "blog", icon: <VerticalSplit />, path:'Blog' },
-    { id: 6, linkName: "Project", icon: <HouseTwoTone /> , path:'project'},
+    { id: 6, linkName: "Project", icon: <HouseTwoTone /> , path:'/project'},
+    
  ];
 
 const DrawerList = () => {
