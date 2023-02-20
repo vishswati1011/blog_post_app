@@ -7,6 +7,7 @@ import Profile from "../Profile/Profile";
 import AddBlog from "../Blog/AddBlog";
 import AddProject from '../Project/AddProject'
 import Map from '../Map/Map3'
+import UserEngagement from '../UserEngament'
 const MainContent = () => {
   const classes = dashboardStyle();
   return (
@@ -14,6 +15,7 @@ const MainContent = () => {
       <div className={classes.toolbar} />
         <Routes>
                     <Route path="/employee" element={<Employee />}/>
+                    <Route path='/userengagement' element={<UserEngagement/>}/>
                     <Route path="/project" element={<Project />}/>
                     <Route path="/addProject" element={<AddProject />}/>
                     <Route path="/map" element={<Map />}/>

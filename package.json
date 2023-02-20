@@ -14,6 +14,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "analytics": "^0.8.1",
     "bootstrap": "^5.2.3",
     "cra-template-pwa": "^2.0.0",
     "firebase": "^9.15.0",
@@ -29,8 +30,12 @@
     "react-pro-sidebar": "^1.0.0-alpha.9",
     "react-router-dom": "^6.4.5",
     "react-scripts": "5.0.1",
+    "react-tracking": "^9.3.1",
     "recompose": "^0.30.0",
+    "scroll-data-hook": "^1.0.4",
+    "socket.io-client": "^4.6.0",
     "styled-components": "^5.3.6",
+    "use-analytics": "^0.0.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

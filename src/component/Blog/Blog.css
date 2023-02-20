@@ -1,0 +1,54 @@
+.blog_wrapper{
+
+    width: 80%;
+    height: 70vh;
+    border:  1px solid rgb(81, 80, 80);
+    border-radius: 10px;
+    padding: 25px;
+    overflow: auto;
+    position: absolute;
+    white-space:  nowrap;
+    ;
+   
+}
+
+.board_outer_wrapper2{
+        display: inline-block;
+       
+        margin-right: 15px;
+}
+.board_outer_wrapper2 label{
+    margin-top: -50px;
+}
+.board_outer_wrapper{
+    width: 35%;
+    display: inline-block;
+    margin-right: 15px;
+
+}
+.board_outer_wrapper label{
+    margin-left: 30px;
+
+}
+
+.board_wrapper{
+
+    width: 100%;
+    height: 60vh;
+    border:  1px solid rgb(81, 80, 80);
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.card_wrapper{
+    border: 1px solid rgb(81, 80, 80);
+    border-radius: 10px;
+    padding: 0px;
+    width: 100%;
+    height: 100px;
+
+}
+
+.card_wrapper label{
+    font-size: 12px;
+}

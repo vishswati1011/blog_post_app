@@ -2,11 +2,12 @@ import React, { useContext, useEffect ,useState,useRef} from "react";
 import AddEmployee from './AddEmployee'
 import ImportUserCSV from './ImportUserCSV'
 import { EmployeeContext } from "../../store/context/employee.context";
+import { useTracking } from "react-tracking";
 const EmployeeTable = () => {
 
   const empCtx=useContext(EmployeeContext);
   // const hiddenFileInput = React.useRef(null);
-
+  const {trackEvent} = useTracking()
   const [allEmployee,setAllEmployee]=useState();
   const addEmployee = (data) =>{
     console.log("call context",empCtx)
@@ -27,6 +28,7 @@ const EmployeeTable = () => {
     // hiddenFileInput.current.click();
   }
 
+  // console.log("trackEvent",trackEvent())
   return (
     <>
 
@@ -37,6 +39,10 @@ const EmployeeTable = () => {
         <div className="col-lg-2">
         <ImportUserCSV handleImport={handleImport} />
         {/* <input type="file" style={{ display: 'none' }} ref={hiddenFileInput} /> */}
+        </div>
+        <div>
+        <button onClick={()=> trackEvent({funComponent:'HookButton', event: "HookButton-Clicked"})}>Click Me!</button>
+
         </div>
       </div>
       <div className="container">
