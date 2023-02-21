@@ -1,24 +1,39 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signIn } from "../../firebase";
+import { API_URL } from "../service";
+import axios from "axios";
 import './Login.css'
 const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [expertEmail, setexpertEmail] = useState("");
+    const [expertPassword, setexpertPassword] = useState("");
     const [error, seterror] = useState("");
     const navigate = useNavigate();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setEmail("");
-        setPassword("");
-        const res = await signIn(email, password);
-        if (res.error) seterror(res.error);
-        else {
-            alert("User login successfully!")
-            localStorage.setItem('user_uid', res)
-            // navigate('/home');
-            window.location.replace('/home')
+        try{
+            const data={
+                expertEmail,expertPassword
+            }
+            console.log(data,"data")
+            const response = await axios.post(`${API_URL}expert/login`,data,{
+                headers:{
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': '*',
+                }
+            })
+            console.log("response",response)
+            if(response.data.success)
+            {
+                alert(response.data.message)
+                localStorage.setItem("user_uid",response.data.token)
+                window.location.replace('/home')
+            }
+        }catch(error){
+            console.log("errrp",error)
         }
+       
     };
     return (
         // style={{backgroundColor:"#147CE3"}}
@@ -33,21 +48,21 @@ const Login = () => {
                     <div className=" mb-3 mt-3">
                         <input
                             type="text"
-                            name="email"
+                            name="expertEmail"
                             className="form-control p-auto "
-                            value={email}
-                            placeholder="Your Email"
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={expertEmail}
+                            placeholder="Your expertEmail"
+                            onChange={(e) => setexpertEmail(e.target.value)}
                         />
                     </div>
                     <div className=" mb-3 mt-3">
                         <input
                             type="password"
                             name="password"
-                            value={password}
+                            value={expertPassword}
                             className="form-control"
                             placeholder="Your Password"
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e) => setexpertPassword(e.target.value)}
                         />
                     </div>
                     <div className="mt-3 mb-2">

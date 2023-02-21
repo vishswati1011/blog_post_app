@@ -1,20 +1,44 @@
 import { useState } from "react";
 import { signUp } from "../../firebase";
+import { API_URL } from "../service";
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 const Signup = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+     const navigate=useNavigate()
+     const [inputValue,setInputValue] = useState({
+        expertName:"",
+        expertEmail:"",
+        expertAddress:"",
+        expertMobileNo:"",
+        expertPassword:""
+      })
+    
     const [error, seterror] = useState("");
+
+    const handleChange = (evt) =>{
+        var name=evt.target.name;
+        var value=evt.target.value;
+        setInputValue((currentInputValue) =>{
+            return {
+                ...currentInputValue,
+                [name]:value
+            }
+        })
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setEmail("");
-        setPassword("");
-        const res = await signUp(email, password);
-        console.log(res,"res")
-        if (res.error) seterror(res.error)
-        else{
-            alert("User register successfully!")
-            window.location.replace('/login')
+        try{
+            const response = await axios.post(`${API_URL}expert/signup`,inputValue)
+            console.log("response",response)
+            console.log("response",response)
+            if(response.data.success)
+            {
+                alert(response.data.message)
+                navigate("/login")
+            }
+        }catch(error){
+            console.log("errrp",error)
         }
     };
 
@@ -30,22 +54,47 @@ const Signup = () => {
                     <div className=" mb-3 mt-3">
                         <input
                             type="text"
-                            name="email"
+                            name="expertName"
                             className="form-control p-auto "
-                            value={email}
+                            placeholder="Your Name"
+                            onChange={handleChange.bind()}
+                        />
+                    </div>
+                    <div className=" mb-3 mt-3">
+                        <input
+                            type="text"
+                            name="expertMobileNo"
+                            className="form-control p-auto "
+                            placeholder="Your Mobile no"
+                            onChange={handleChange.bind()}
+                        />
+                    </div>
+                    <div className=" mb-3 mt-3">
+                        <input
+                            type="text"
+                            name="expertAddress"
+                            className="form-control p-auto "
+                            placeholder="Your Address"
+                            onChange={handleChange.bind()}
+                        />
+                    </div>
+                    <div className=" mb-3 mt-3">
+                        <input
+                            type="text"
+                            name="expertEmail"
+                            className="form-control p-auto "
                             placeholder="Your Email"
-                            onChange={(e) => setEmail(e.target.value)}
+                            onChange={handleChange.bind()}
                         />
                     </div>
                     <div className=" mb-3 mt-3">
                         <input
                             type="password"
-                            name="password"
-                            value={password}
+                            name="expertPassword"
                             className="form-control"
                             placeholder="Your Password"
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
+                            onChange={handleChange.bind()}
+                           />
                     </div>
                     <div className="mt-3 mb-2">
                     <input type="submit" className="btn btn-primary" value="Register" />
