@@ -4,17 +4,17 @@ import {
     FormLabel,
     Radio,
     RadioGroup
-  } from "@material-ui/core";
+  } from "@material-ui/core"
   
   const MuiRadioGroup = (props) => {
-    const { label, name, value, onChange, RadioItem, ...exists } = props;
+    const { label, name, value, onChange, RadioItem, ...exists } = props
   
     return (
       <FormControl>
         <FormLabel>{label}</FormLabel>
         <RadioGroup name={name} value={value} onChange={onChange} {...exists}>
           {RadioItem.map((item) => {
-            const { id, label, value } = item;
+            const { id, label, value } = item
             return (
               <FormControlLabel
                 key={id}
@@ -22,12 +22,12 @@ import {
                 value={value}
                 control={<Radio />}
               />
-            );
+            )
           })}
         </RadioGroup>
       </FormControl>
-    );
-  };
+    )
+  }
   
-  export default MuiRadioGroup;
+  export default MuiRadioGroup
   

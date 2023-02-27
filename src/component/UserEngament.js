@@ -11,8 +11,13 @@ const App = () => {
     relativeDistance,
     totalDistance
   } = useScrollData({
-    onScrollStart: () => {},
-    onScrollEnd: () => {}
+    onScrollStart: () => {
+      console.log("scrol time",time)
+    },
+    onScrollEnd: () => {
+      console.log("scrol end",time)
+
+    }
   });
 
   return (

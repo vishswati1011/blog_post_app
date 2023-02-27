@@ -1,11 +1,11 @@
-import { Checkbox, FormControl, FormControlLabel } from "@material-ui/core";
+import { Checkbox, FormControl, FormControlLabel } from "@material-ui/core"
 
 const MuiCheckBox = (props) => {
-  const { name, value, label, onChange, color } = props;
+  const { name, value, label, onChange, color } = props
 
   const convertEventToParam = (name, value) => ({
     target: { name, value }
-  });
+  })
 
   return (
     <FormControl>
@@ -23,7 +23,7 @@ const MuiCheckBox = (props) => {
         }
       />
     </FormControl>
-  );
-};
+  )
+}
 
-export default MuiCheckBox;
+export default MuiCheckBox
