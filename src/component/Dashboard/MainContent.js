@@ -8,6 +8,7 @@ import AddBlog from "../Blog/AddBlog";
 import AddProject from '../Project/AddProject'
 import Map from '../Map/Map3'
 import UserEngagement from '../UserEngament'
+import KanbanApp from "../Kanban/KanbanApp";
 const MainContent = () => {
   const classes = dashboardStyle();
   return (
@@ -22,6 +23,8 @@ const MainContent = () => {
                     <Route path="/blog" element={<Blog />}/>
                     <Route path="/addblog" element={<AddBlog />}/>
                     <Route path="/profile" element={<Profile />}/>
+                    <Route path="/kanban" element={<KanbanApp />}/>
+
               </Routes>
     </main>
   );

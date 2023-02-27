@@ -4,6 +4,11 @@ import dashboardStyle from "./DashboardStyle";
 
 const DashboardAppbar = ({ mobileOpen, setMobileOpen }) => {
   const classes = dashboardStyle();
+  const handleLogout = () =>{
+    localStorage.clear();
+    window.location.replace('/login')
+
+  }
   return (
     <AppBar position="fixed" className={classes.AppBar}>
       <Toolbar>
@@ -15,7 +20,7 @@ const DashboardAppbar = ({ mobileOpen, setMobileOpen }) => {
         >
           <Menu />
         </IconButton>
-        <Typography variant="h6">Logo</Typography>
+        <Typography variant="h6" onClick={()=>handleLogout()}>Logo</Typography>
       </Toolbar>
     </AppBar>
   );

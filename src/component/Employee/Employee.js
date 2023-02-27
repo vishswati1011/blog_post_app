@@ -8,7 +8,7 @@ const EmployeeTable = () => {
   const empCtx=useContext(EmployeeContext);
   // const hiddenFileInput = React.useRef(null);
   const {trackEvent} = useTracking()
-  const [allEmployee,setAllEmployee]=useState();
+  const [allEmployee,setAllEmployee]=useState([]);
   const addEmployee = (data) =>{
     console.log("call context",empCtx)
     empCtx.addEmployee(data)

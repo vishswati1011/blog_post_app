@@ -15,7 +15,7 @@ export default function App() {
       <EmployeeContextProvider>
       <ProjectContextProvider>
       <BrowserRouter>
-        {localStorage.getItem("user_uid") ?
+        {localStorage.getItem("blog_user_uid") ?
           <>
             <Dashboard />
             {/* <div className="container-fluid" style={{ marginTop: "70px" }}>
