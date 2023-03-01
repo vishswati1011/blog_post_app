@@ -21,6 +21,7 @@ const MyMapComponent = compose(
   withScriptjs,
   withGoogleMap
 )(props => (
+
   <GoogleMap defaultZoom={8} defaultCenter={{ lat: -34.397, lng: 150.644 }}>
     <Marker position={{ lat: -34.397, lng: 150.644 }} />
   </GoogleMap>
@@ -28,11 +29,14 @@ const MyMapComponent = compose(
 
 
 const ReactGoogleMaps = () => [
+ 
+
 
   <MyMapComponent key="map" 
   containerElement={<div style={{ height: `400px`,width:'1000px' }} />}
   mapElement={<div style={{ height: `100%` }} />}
   />
+  
 ];
 
 export default ReactGoogleMaps;

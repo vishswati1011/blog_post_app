@@ -1,8 +1,14 @@
 import './Blog.css'
-
+import { useEffect } from 'react'
 function Blog () {
 
     const task =["A","B","C","D","E"]
+
+    useEffect(()=>{
+        localStorage.setItem("log",new Date())
+    
+      },[])
+      
 
     return(
         <div className='blog_wrapper'>
