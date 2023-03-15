@@ -3,6 +3,9 @@ import AddEmployee from './AddEmployee'
 import ImportUserCSV from './ImportUserCSV'
 import { EmployeeContext } from "../../store/context/employee.context";
 import { useTracking } from "react-tracking";
+import findTime from '../UserActivity'
+// let logDate="";
+
 const EmployeeTable = () => {
 
   const empCtx=useContext(EmployeeContext);
@@ -28,6 +31,23 @@ const EmployeeTable = () => {
     // hiddenFileInput.current.click();
   }
 
+  useEffect(()=>{
+    // const myDiv = document.getElementById("profile");
+    //     myDiv.addEventListener('mousemove', () => {
+    //         console.log(mouseMovementCount,"mouse move")
+    //     mouseMovementCount += 1.8;  }
+    // );
+    // logDate=new Date()
+    // console.log(logDate,"time on load")
+    localStorage.setItem("log",new Date())
+
+    return () => {
+        console.log( "removeEventListener");
+        // myDiv.removeEventListener("mousemove",myFunction) 
+        // calUserActivity('profile',mouseMovementCount)
+        findTime('employee')
+    } 
+  },[])
   // console.log("trackEvent",trackEvent())
   return (
     <>

@@ -6,10 +6,10 @@ import ProjectContextProvider from "./store/context/projects.context";
 import SidebarContextProvider from "./store/context/sidebarContext";
 import UnAuthRoute from './Routes/UnAuthRouts';
 import './App.css'
+import findTime from "./component/UserActivity";
 var mouseMovementCount = 0;
 
 export default function App() {
-
   return (
     <div className="App">
       <SidebarContextProvider>
