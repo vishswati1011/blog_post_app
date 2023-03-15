@@ -31,7 +31,6 @@ const Signup = () => {
         try{
             const response = await axios.post(`${API_URL}expert/signup`,inputValue)
             console.log("response",response)
-            console.log("response",response)
             if(response.data.success)
             {
                 alert(response.data.message)
