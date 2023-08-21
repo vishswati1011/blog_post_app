@@ -61,7 +61,7 @@ const EmployeeTable = () => {
         {/* <input type="file" style={{ display: 'none' }} ref={hiddenFileInput} /> */}
         </div>
         <div>
-        <button onClick={()=> trackEvent({funComponent:'HookButton', event: "HookButton-Clicked"})}>Click Me!</button>
+       
 
         </div>
       </div>
